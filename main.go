@@ -24,6 +24,10 @@ func main() {
 		return ctx.JSON(hero)
 	})
 
+	app.Get("/rockets", func(ctx *fiber.Ctx) error {
+		return ctx.JSON(findPayloadWeightMap("leo"))
+	})
+
 	improved := app.Group("/improved")
 
 	improved.Get("/heroes", func(ctx *fiber.Ctx) error {
