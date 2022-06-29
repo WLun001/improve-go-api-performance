@@ -21,7 +21,7 @@ func main() {
 		if err != nil {
 			return fiber.NewError(500, err.Error())
 		}
-		return ctx.JSON(hero)
+		return prettyJSON(ctx, hero)
 	})
 
 	app.Get("/rockets", func(ctx *fiber.Ctx) error {
@@ -37,7 +37,7 @@ func main() {
 		}
 		// remove members if not using it
 		hero.Members = nil
-		return ctx.JSON(hero)
+		return prettyJSON(ctx, hero)
 	})
 
 	log.Println(app.Listen(":3000"))
