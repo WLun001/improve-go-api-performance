@@ -28,6 +28,11 @@ func main() {
 		return ctx.JSON(findPayloadWeightMap("leo"))
 	})
 
+	app.Get("/longTask", func(ctx *fiber.Ctx) error {
+		longTask()
+		return ctx.SendStatus(fiber.StatusAccepted)
+	})
+
 	improved := app.Group("/improved")
 
 	improved.Get("/heroes", func(ctx *fiber.Ctx) error {
@@ -38,6 +43,11 @@ func main() {
 		// remove members if not using it
 		hero.Members = nil
 		return prettyJSON(ctx, hero)
+	})
+
+	improved.Get("/longTask", func(ctx *fiber.Ctx) error {
+		go longTask()
+		return ctx.SendStatus(fiber.StatusAccepted)
 	})
 
 	log.Println(app.Listen(":3000"))
