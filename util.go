@@ -17,6 +17,6 @@ func prettyJSON(ctx *fiber.Ctx, data interface{}) error {
 
 func longTask() {
 	fmt.Println("start long task")
-	time.Sleep(5000)
+	time.Sleep(time.Second * 5)
 	fmt.Println("done long task")
 }
